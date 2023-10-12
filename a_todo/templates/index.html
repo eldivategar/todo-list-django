@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Material Design for Bootstrap</title>
+
+  <!-- MDB icon -->
+  <link rel="icon" href="{% static 'img/mdb-favicon.ico' %}" type="image/x-icon" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mitr">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito">
+
+  <!-- MDB -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap-to-do-list.min.css '%}" />
+
+  <!-- Custom style -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  <!-- Start your project here-->
+  <section class="vh-100" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-9 col-xl-7">
+          <div class="card rounded-3">
+            <div class="card-body p-4">
+
+              <h4 class="text-center my-3 pb-3">To Do App</h4>
+
+              <form method="post" action="{% url 'add' %}"
+                class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+                {% csrf_token %}
+                <div class="col-12">
+                  <div class="form-outline">
+                    <input type="text" id="form1" name="title" class="form-control" />
+                    <label class="form-label" for="form1">Enter a task here</label>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+
+                <!-- <div class="col-12">
+                <button type="submit" class="btn btn-warning">Get tasks</button>
+              </div> -->
+              </form>
+
+              <table class="table mb-4">
+                <thead>
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Todo item</th>
+                    <th scope="col">Created at</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for todo in todos %}
+                  <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td class="capitalize">{{ todo.title }}</td>
+                    <td>{{ todo.created_at|date:"d F Y H:i" }}</td>
+                    <td>{{ todo.status }}</td>
+                    <td>
+                      <button type="submit" class="btn btn-danger" onclick="del('/delete/{{ todo.id }}/');">
+                        <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                      </button>
+                      <button type="submit" class="btn btn-success ms-1"
+                        onclick="upd('/update/{{ todo.id }}/');">
+                        <i class="fa-solid fa-check" style="color: #ffffff;"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- MDB -->
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+
+  <!-- Custom scripts -->
+  <script type="text/javascript">
+
+    const upd = (url) => {
+      Swal.fire({
+        title: 'Update this task to Done ?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Task updated!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+            .then(() => { window.location.href = url; })
+        }
+      })
+    };
+
+    const del = (url) => {
+      Swal.fire({
+        title: 'Do you want to delete this task?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Delete',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Task deleted!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+            .then(() => { window.location.href = url; })
+        }
+      })
+    };
+  </script>
+</body>
+
+</html>
