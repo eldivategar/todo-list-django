@@ -145,7 +145,7 @@ const del = (id) => {
           Swal.showLoading();
         },
       });
-      fetch(`/delete/${id}`, {
+      fetch(`/delete/${id}/`, {
         method: "DELETE",
         headers: {
           "X-CSRFToken": csrftoken,
