@@ -1,4 +1,5 @@
 <tbody id="all_task_done">
+    {% if todos %}
     {% for todo in todos_done %}
     <tr class="fw-normal">
         <th>
@@ -25,4 +26,9 @@
         </td>
     </tr>
     {% endfor %}
+    {% else %}
+    <tr>
+        <td colspan="5" class="text-center">No task available.</td>
+    </tr>
+    {% endif %}
 </tbody>
