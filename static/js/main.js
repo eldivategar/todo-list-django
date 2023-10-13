@@ -75,9 +75,10 @@ const del = (url) => {
 const addTaskButton = document.getElementById("add-task-button");
 
 addTaskButton.addEventListener("click", function () {
+  const cached_member = localStorage.getItem("member");
   Swal.fire({
     title: "Add Task",
-    html: `<input type="text" id="member" class="swal2-input" placeholder="Your name">
+    html: `<input type="text" id="member" class="swal2-input" placeholder="Your name" value=${cached_member || ''}>
       <input type="text" id="title" class="swal2-input" placeholder="Title">
       <div id="priority" class="swal2-radio">
         <h5>Priority</h5>
@@ -91,7 +92,7 @@ addTaskButton.addEventListener("click", function () {
     confirmButtonText: "Submit",
     focusConfirm: false,
 
-    preConfirm: () => {
+    preConfirm: () => {      
       const member = Swal.getPopup().querySelector("#member").value;
       const title = Swal.getPopup().querySelector("#title").value;
       const priority = Swal.getPopup().querySelector(
@@ -100,7 +101,8 @@ addTaskButton.addEventListener("click", function () {
       if (!member || !title || !priority) {
         Swal.showValidationMessage(`Please insert all data!`);
       }
-      Swal.showLoading();
+      localStorage.setItem("member", member);
+      Swal.showLoading();      
       return fetch("/add/", {
         method: "POST",
         headers: {
