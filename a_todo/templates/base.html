@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>To-Do App</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="{% static 'img/mdb-favicon.ico' %}" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <!-- MDB -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap-to-do-list.min.css' %}" />
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mitr">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito">
+  <!-- Custom style -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+  <!-- Start your project here-->
+  <section class="vh-100" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-12 col-xl-10">
+
+          <div class="card">
+            <div class="card-header p-3">
+              <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Task List</h5>
+            </div>
+            {% block body %}
+            {% endblock %}
+            <div class="card-footer p-3 d-flex justify-content-between">
+                <button class="btn btn-success" id="completed-task-button">Completed Task</button>
+                <button class="btn btn-warning" id="all-task-button">All Task</button>
+                <button class="btn btn-primary" id="add-task-button"n>Add Task</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End your project here-->
+
+  <!-- MDB -->
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+
+  <!-- SweetAlert -->
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+   <!-- Custom scripts -->
+   <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

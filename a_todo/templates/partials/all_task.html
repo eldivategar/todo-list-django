@@ -1,0 +1,28 @@
+<tbody id="all_task">
+    {% for todo in todos %}
+    <tr class="fw-normal">
+        <th>
+            <!-- <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp" class="shadow-1-strong rounded-circle" alt="avatar 1"
+      style="width: 55px; height: auto;"> -->
+            <span class="ms-2">{{ todo.member }}</span>
+        </th>
+        <td class="align-middle">
+            <span>{{ todo.title }}</span>
+        </td>
+        <td class="align-middle">{{ todo.created_at|date:"d F Y H:i" }}</td>
+        <td class="align-middle">
+            <h6 class="mb-0">
+                <span
+                    class="{% if todo.priority == 'Low' %}badge bg-success{% elif todo.priority == 'Mid' %}badge bg-warning{% else %}badge bg-danger{% endif %}">
+                    {{ todo.priority }} priority
+                </span>
+            </h6>
+        </td>
+        <td class="align-middle">
+            <a href="#!" onclick="upd('/update/{{ todo.id }}/');" data-mdb-toggle="tooltip" title="Mark Done"><i class="fas fa-check text-success me-3"></i></a>
+            <a href="#!" onclick="del('/delete/{{ todo.id }}/');" data-mdb-toggle="tooltip" title="Remove"><i
+                    class="fas fa-trash-alt text-danger"></i></a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>

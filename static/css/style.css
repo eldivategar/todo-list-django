@@ -5,10 +5,17 @@ tbody {
 td {
     font-family: 'Nunito';
 }
+
 th {
     font-family: 'Mitr';
 }
 
 .capitalize {
     text-transform: capitalize;
+}
+
+.done {
+    color: #00b74a !important;
+    text-decoration: none;
+    font-family: 'Mitr';
 }
