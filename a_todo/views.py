@@ -24,16 +24,19 @@ def add(request):
         return JsonResponse({"error": "Invalid method."}, status=405)
 
 def edit(request, id):
-    try:
-        todo = Todo.objects.get(id=id)
-        data = {
-            'member': todo.member,
-            'title': todo.title,
-            'priority': todo.priority,
-        }
-        return JsonResponse(data)  
-    except Todo.DoesNotExist:
-        return JsonResponse({'error': 'Tugas tidak ditemukan'}, status=404)
+    if request.method == "POST":
+        try:
+            todo = Todo.objects.get(id=id)
+            data = {
+                'member': todo.member,
+                'title': todo.title,
+                'priority': todo.priority,
+            }
+            return JsonResponse(data)  
+        except Todo.DoesNotExist:
+            return JsonResponse({'error': 'Tugas tidak ditemukan'}, status=404)
+    else:
+        return JsonResponse({"error": "Invalid method."}, status=405)
 
 def edit_task(request, id):
     if request.method == 'POST':
