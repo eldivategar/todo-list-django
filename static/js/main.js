@@ -1,4 +1,5 @@
-const csrftoken = getCookie("csrftoken");
+// const csrftoken = getCookie("csrftoken");
+var csrftoken = '{{ csrf_token }}';
 
 function getCookie(name) {
   var cookieValue = null;
