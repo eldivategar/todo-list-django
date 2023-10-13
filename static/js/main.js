@@ -9,8 +9,7 @@ const upd = (id) => {
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire({
-        title: "Updating task...",
-        icon: "loading",
+        title: "Updating task...",        
         allowOutsideClick: false,
         showConfirmButton: false,
         willOpen: () => {
@@ -137,8 +136,7 @@ const del = (id) => {
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire({
-        title: "Deleting task...",
-        icon: "loading",
+        title: "Deleting task...",        
         allowOutsideClick: false,
         showConfirmButton: false,
         willOpen: () => {
