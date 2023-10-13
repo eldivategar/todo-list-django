@@ -23,6 +23,36 @@ def add(request):
     else:
         return JsonResponse({"error": "Invalid method."}, status=405)
 
+def edit(request, id):
+    try:
+        todo = Todo.objects.get(id=id)
+        data = {
+            'member': todo.member,
+            'title': todo.title,
+            'priority': todo.priority,
+        }
+        return JsonResponse(data)  
+    except Todo.DoesNotExist:
+        return JsonResponse({'error': 'Tugas tidak ditemukan'}, status=404)
+
+def edit_task(request, id):
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8'))
+        member = data.get('member')
+        title = data.get('title')
+        priority = data.get('priority')
+
+        if not member or not title or not priority:
+            return JsonResponse({"error": "Please enter valid data."}, status=400)
+        todo = Todo.objects.get(id=id)
+        todo.member = member
+        todo.title = title
+        todo.priority = priority
+        todo.save()
+        return JsonResponse({"message": "Task Updated."}, status=200)
+    else:
+        return JsonResponse({"error": "Invalid method."}, status=405)
+
 def update(request, id):
     todo = Todo.objects.get(id=id)
     todo.status = 'Done'
