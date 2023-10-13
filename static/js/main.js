@@ -164,6 +164,7 @@ document.getElementById("completed-task-button").addEventListener("click", funct
 
     document.getElementById("all_task_done").style.display = 'table-row-group';
     document.getElementById("all_task").style.display = "none";
+    document.getElementById("task-header").innerText = "Completed Task";
 });
 
 document.getElementById("all-task-button").addEventListener("click", function () {
@@ -172,4 +173,5 @@ document.getElementById("all-task-button").addEventListener("click", function ()
 
     document.getElementById("all_task").style.display = 'table-row-group';
     document.getElementById("all_task_done").style.display = "none";
+    document.getElementById("task-header").innerText = "Task List";
 });
