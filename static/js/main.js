@@ -195,7 +195,6 @@ addTaskButton.addEventListener("click", function () {
       if (!member || !title || !priority) {
         Swal.showValidationMessage(`Please insert all data!`);
       }
-      localStorage.setItem("member", member);
       Swal.showLoading();
       return fetch("/add/", {
         method: "POST",
@@ -216,6 +215,7 @@ addTaskButton.addEventListener("click", function () {
           return response.json();
         })
         .then((data) => {
+          localStorage.setItem("member", member);
           Swal.hideLoading();
           Swal.fire({
             icon: "success",
