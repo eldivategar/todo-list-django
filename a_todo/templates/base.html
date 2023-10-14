@@ -8,7 +8,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <title> Chael To-Do App</title>
   <!-- MDB icon -->
-  <link rel="icon" href="{% static 'img/mdb-favicon.ico' %}" type="image/x-icon" />
+  <link rel="icon" href="{% static 'img/logo-label.ico' %}" type="image/x-icon" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
   <!-- Google Fonts Roboto -->
@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mitr">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito">
   <!-- Custom style -->
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
 </head>
 
 <body>
@@ -27,8 +27,7 @@
   <section class="vh-100" style="background-color: #eee;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-12 col-xl-10">
-
+        <div class="col-md-12 col-xl-10">          
           <div class="card">
             <div class="card-header p-3">
               <h5 class="mb-0"><i class="fas fa-tasks me-2"></i><span id="task-header">Task List</span></h5>
@@ -38,6 +37,7 @@
             <div class="card-footer p-3 d-flex justify-content-between">
                 <button class="btn btn-success" id="completed-task-button">Completed Task</button>
                 <button class="btn btn-warning" id="all-task-button">All Task</button>
+                <img src="{% static 'img/logo-label.png' %}" alt="label" class="img-fluid logo-label" style="max-width: 5%;">
                 <button class="btn btn-primary" id="add-task-button"n>Add Task</button>
             </div>
           </div>
