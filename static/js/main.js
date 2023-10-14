@@ -16,8 +16,8 @@ const upd = (id) => {
           Swal.showLoading();
         },
       });
-      fetch(`/update/${id}`, {
-        method: "DELETE",
+      fetch(`/update/${id}/`, {
+        method: "PUT",
         headers: {
           "X-CSRFToken": csrftoken,
         },
@@ -37,7 +37,7 @@ const upd = (id) => {
 
 const edit_task = (taskId) => {
   Swal.showLoading();
-  fetch(`/edit/${taskId}/`)
+  fetch(`/get_task_by_id/${taskId}/`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Gagal mengambil data tugas");
@@ -80,8 +80,8 @@ const edit_task = (taskId) => {
             Swal.showValidationMessage("Harap isi semua data!");
           }
           Swal.showLoading();
-          return fetch(`/edit_task/${taskId}/`, {
-            method: "POST",
+          return fetch(`/edit/${taskId}/`, {
+            method: "PUT",
             headers: {
               "Content-Type": "application/json",
               "X-CSRFToken": csrftoken,

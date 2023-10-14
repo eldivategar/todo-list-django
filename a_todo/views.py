@@ -23,7 +23,7 @@ def add(request):
     else:
         return JsonResponse({"error": "Invalid method."}, status=405)
 
-def edit(request, id):
+def get_task_by_id(request, id):
     try:
         todo = Todo.objects.get(id=id)
         data = {
@@ -33,10 +33,10 @@ def edit(request, id):
         }
         return JsonResponse(data)  
     except Todo.DoesNotExist:
-        return JsonResponse({'error': 'Tugas tidak ditemukan'}, status=404)
+        return JsonResponse({'error': 'Task notf found'}, status=404)
 
-def edit_task(request, id):
-    if request.method == 'POST':
+def edit(request, id):
+    if request.method == 'PUT':
         data = json.loads(request.body.decode('utf-8'))
         member = data.get('member')
         title = data.get('title')
@@ -54,12 +54,18 @@ def edit_task(request, id):
         return JsonResponse({"error": "Invalid method."}, status=405)
 
 def update(request, id):
-    todo = Todo.objects.get(id=id)
-    todo.status = 'Done'
-    todo.save()
-    return JsonResponse({"success": "Task Updated."}, status=200)
+    if request.method == 'PUT':
+        todo = Todo.objects.get(id=id)
+        todo.status = 'Done'
+        todo.save()
+        return JsonResponse({"success": "Task Updated."}, status=200)
+    else:
+        return JsonResponse({"error": "Invalid method."}, status=405)
 
 def delete(request, id):
-    todo = Todo.objects.get(id=id)
-    todo.delete()
-    return JsonResponse({"message": "Task Deleted."}, status=200)
+    if request.method == "DELETE":
+        todo = Todo.objects.get(id=id)
+        todo.delete()
+        return JsonResponse({"message": "Task Deleted."}, status=200)
+    else:
+        return JsonResponse({"error": "Invalid method."}, status=405)
